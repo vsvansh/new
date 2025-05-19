@@ -1,0 +1,319 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 97%;
+    --foreground: 0 0% 12%;
+
+    --card: 0 0% 92%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 0 0% 92%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 212 100% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 212 100% 47%;
+
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 212 100% 47%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 82%;
+    --input: 0 0% 82%;
+    --ring: 212 100% 47%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --tooltip-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #1d1d1f;
+    
+    --glow-primary: 0 0 15px rgba(0, 113, 227, 0.5);
+    --glow-success: 0 0 15px rgba(52, 199, 89, 0.5);
+    --glow-danger: 0 0 15px rgba(255, 59, 48, 0.5);
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 212 100% 65%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 212 100% 65%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 212 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 85% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 212 100% 65%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --tooltip-bg: rgba(30, 30, 30, 0.95);
+    --text-color: #ffffff;
+    
+    --glow-primary: 0 0 20px rgba(0, 153, 255, 0.6);
+    --glow-success: 0 0 20px rgba(52, 199, 89, 0.6);
+    --glow-danger: 0 0 20px rgba(255, 69, 58, 0.7);
+    --glow-purple: 0 0 20px rgba(175, 82, 222, 0.7);
+    --glow-blue: 0 0 20px rgba(0, 122, 255, 0.7);
+    --glow-pink: 0 0 20px rgba(255, 45, 85, 0.7);
+    --neon-green: 0 0 20px rgba(52, 199, 89, 0.8);
+    --neon-blue: 0 0 20px rgba(10, 132, 255, 0.8);
+    --neon-pink: 0 0 20px rgba(255, 45, 85, 0.8);
+    --neon-purple: 0 0 20px rgba(191, 90, 242, 0.8);
+    --neon-yellow: 0 0 20px rgba(255, 204, 0, 0.8);
+    --neon-red: 0 0 20px rgba(255, 59, 48, 0.8);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-macos-bg dark:bg-zinc-950 text-macos-text dark:text-white font-sans;
+  }
+}
+
+@layer components {
+  .macos-window {
+    @apply bg-macos-window dark:bg-zinc-900/80 backdrop-blur-md rounded-xl border border-white/20 dark:border-white/10 shadow-lg dark:shadow-xl;
+  }
+  
+  .macos-dock {
+    @apply bg-macos-dock dark:bg-zinc-900/70 backdrop-blur-2xl border border-white/30 dark:border-white/10 rounded-2xl shadow-lg;
+  }
+  
+  .dock-item {
+    @apply relative flex items-center justify-center w-12 h-12 mx-1 transition-all duration-200 cursor-pointer;
+  }
+  
+  .dock-item:hover {
+    @apply animate-dock-hover;
+  }
+  
+  .dock-item.active {
+    @apply after:content-[''] after:absolute after:bottom-0 after:w-1 after:h-1 after:bg-white/50 after:rounded-full;
+  }
+  
+  .macos-btn {
+    @apply flex items-center justify-center h-3 w-3 rounded-full cursor-pointer;
+  }
+  
+  .macos-btn.close {
+    @apply bg-macos-red hover:shadow-[var(--glow-danger)];
+  }
+  
+  .macos-btn.minimize {
+    @apply bg-macos-yellow hover:shadow-[var(--glow-success)];
+  }
+  
+  .macos-btn.expand {
+    @apply bg-macos-green hover:shadow-[var(--glow-primary)];
+  }
+  
+  .glass-card {
+    @apply bg-white/20 dark:bg-white/5 backdrop-blur-lg border border-white/30 dark:border-white/10 rounded-xl shadow-sm 
+    transition-all duration-300 hover:transform hover:-translate-y-2;
+  }
+
+  /* Enhanced hover transition for cards */
+  .hover-card {
+    @apply transition-all duration-300 ease-in-out transform hover:-translate-y-3 hover:shadow-lg;
+  }
+  
+  /* Fullscreen mode specific styles */
+  .fullscreen-content {
+    @apply h-screen max-h-screen overflow-y-auto pb-24;
+  }
+
+  /* Dialog position fix */
+  .fixed[role="dialog"] {
+    @apply my-8 max-h-[calc(100vh-4rem)] overflow-y-auto;
+  }
+  
+  /* Improved form inputs */
+  .form-input {
+    @apply rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  /* Improved buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
+  
+  /* Improved cards */
+  .card-gradient {
+    @apply bg-gradient-to-br from-white/30 to-white/10 dark:from-white/10 dark:to-transparent;
+  }
+  
+  /* Landing page styles */
+  .hero-gradient {
+    @apply bg-gradient-to-br from-blue-500/20 via-indigo-500/10 to-purple-500/20 dark:from-blue-700/30 dark:via-indigo-800/20 dark:to-purple-900/40;
+  }
+  
+  .glass-button {
+    @apply px-6 py-3 rounded-full bg-white/20 dark:bg-white/10 backdrop-blur-md border border-white/30 dark:border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium text-black dark:text-white;
+  }
+  
+  .primary-button {
+    @apply px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-medium dark:shadow-[var(--glow-blue)];
+  }
+  
+  /* Dark mode neon styles */
+  .dark .text-gradient {
+    @apply bg-gradient-to-br from-white via-white/90 to-white/70 bg-clip-text text-transparent;
+  }
+  
+  .dark .neon-text {
+    @apply text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.6)];
+  }
+  
+  .dark .neon-border {
+    @apply border border-white/30 shadow-[0_0_10px_rgba(255,255,255,0.3)];
+  }
+  
+  .dark .neon-button {
+    @apply border border-white/30 shadow-[0_0_15px_rgba(131,131,255,0.5)] hover:shadow-[0_0_20px_rgba(131,131,255,0.8)] transition-shadow;
+  }
+  
+  .dark .neon-primary {
+    @apply shadow-[var(--glow-primary)];
+  }
+  
+  .dark .neon-purple {
+    @apply shadow-[var(--glow-purple)];
+  }
+  
+  .dark .neon-pink {
+    @apply shadow-[var(--glow-pink)];
+  }
+  
+  .dark .neon-card {
+    @apply shadow-[var(--glow-blue)];
+  }
+
+  .dark .neo-blur {
+    @apply backdrop-blur-2xl bg-black/40 border border-white/10;
+  }
+  
+  .dark .glass-card {
+    @apply bg-black/20 border-white/5 backdrop-blur-xl hover:shadow-[var(--neon-blue)];
+  }
+}
+
+@keyframes dock-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes dock-hover {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1.1); }
+}
+
+/* New animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(20px); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.3s ease-out forwards;
+}
+
+/* Text gradient animation */
+.text-gradient {
+  @apply bg-gradient-to-r from-macos-blue via-macos-indigo to-macos-purple bg-clip-text text-transparent;
+  background-size: 200% 100%;
+  animation: textGradientFlow 5s ease infinite;
+}
+
+@keyframes textGradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Add glow effect on cards */
+.dark .glass-card:hover {
+  box-shadow: 0 0 15px rgba(131, 131, 255, 0.3);
+  transform: translateY(-8px);
+}
+
+/* Neon text effect for dark mode */
+.dark .text-neon-blue {
+  color: #61dafb;
+  text-shadow: 0 0 10px rgba(97, 218, 251, 0.8);
+}
+
+.dark .text-neon-pink {
+  color: #ff69b4;
+  text-shadow: 0 0 10px rgba(255, 105, 180, 0.8);
+}
